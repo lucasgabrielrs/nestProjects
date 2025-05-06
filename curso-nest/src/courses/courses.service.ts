@@ -31,13 +31,16 @@ export class CoursesService {
 
   update(id: number, updateCourseDTO: any) {
     const existCourse = this.findOne(id);
-    if (existCourse as any) {
-      const index = this.courses.findIndex((Course) => Course.id === id);
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-      this.courses[index] = {
-        id,
-        ...updateCourseDTO,
-      };
+    if (existCourse) {
+      const index = this.courses.findIndex((course) => course.id === id);
+      if (index !== -1) {
+        // Atualiza apenas os campos do updateCourseDTO e mantém os outros
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+        this.courses[index] = {
+          ...this.courses[index], // Mantém os dados existentes
+          ...updateCourseDTO, // Atualiza com os novos valores
+        };
+      }
     }
   }
 

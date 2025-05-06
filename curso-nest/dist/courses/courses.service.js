@@ -34,11 +34,13 @@ let CoursesService = class CoursesService {
     update(id, updateCourseDTO) {
         const existCourse = this.findOne(id);
         if (existCourse) {
-            const index = this.courses.findIndex((Course) => Course.id === id);
-            this.courses[index] = {
-                id,
-                ...updateCourseDTO,
-            };
+            const index = this.courses.findIndex((course) => course.id === id);
+            if (index !== -1) {
+                this.courses[index] = {
+                    ...this.courses[index],
+                    ...updateCourseDTO,
+                };
+            }
         }
     }
     remove(id) {

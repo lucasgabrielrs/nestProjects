@@ -10,16 +10,15 @@ exports.AppModule = void 0;
 const common_1 = require("@nestjs/common");
 const app_controller_1 = require("./app.controller");
 const app_service_1 = require("./app.service");
-const courses_controller_1 = require("./courses/courses.controller");
-const courses_service_1 = require("./courses/courses.service");
+const courses_module_1 = require("./courses/courses.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
 exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
-        imports: [],
-        controllers: [app_controller_1.AppController, courses_controller_1.CoursesController],
-        providers: [app_service_1.AppService, courses_service_1.CoursesService],
+        imports: [courses_module_1.CoursesModule],
+        controllers: [app_controller_1.AppController],
+        providers: [app_service_1.AppService],
     })
 ], AppModule);
 //# sourceMappingURL=app.module.js.map
